@@ -1,59 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Valentine?</title>
 <style>
    body {
+     margin: 0;
+     height: 100vh;
      background: #ffe6ee;
      font-family: Arial, sans-serif;
-     height: 100vh;
      display: flex;
      justify-content: center;
      align-items: center;
      text-align: center;
    }
    .card {
+     width: 500px;
+     height: 320px;
      background: white;
-     padding: 30px 40px;
      border-radius: 20px;
-     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+     position: relative;
+     padding-top: 40px;
+     overflow: hidden; /* keeps button inside */
    }
    h1 {
      color: #ff4d6d;
+     margin-bottom: 40px;
    }
    button {
-     font-size: 20px;
-     padding: 12px 26px;
-     margin: 12px;
-     border: none;
-     border-radius: 12px;
-   }
-   .yes {
-     background-color: #ff4d6d;
-     color: white;
-     cursor: pointer;
-   }
-   .no {
-     background-color: #ddd;
-     color: #999;
-     cursor: not-allowed;
-   }
+  width: 120px;          /* FIXED WIDTH */
+  height: 44px;          /* FIXED HEIGHT */
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  left: 100px;
+  bottom: 40px;
+}
+#noBtn {
+  background-color: #ddd;
+  color: #666;
+  left: 280px;
+  bottom: 40px;
+}
 </style>
 </head>
 <body>
-<div class="card">
+<div class="card" id="card">
 <h1>💖 Will you be my Valentine? 💖</h1>
-<p>Please choose wisely 😌</p>
-<button class="yes" onclick="yesClicked()">Can la 💕</button>
-<button class="no" disabled>Cannot 🙃</button>
+<button id="yesBtn" onclick="yesClicked()">Can la 💕</button>
+<button id="noBtn">Cannot 🙃</button>
 </div>
 <script>
+   const noBtn = document.getElementById("noBtn");
+   const card = document.getElementById("card");
+   card.addEventListener("mousemove", function(e) {
+     const rect = noBtn.getBoundingClientRect();
+     const distance = Math.hypot(
+       e.clientX - (rect.left + rect.width / 2),
+       e.clientY - (rect.top + rect.height / 2)
+     );
+     if (distance < 100) {
+       moveButton();
+     }
+   });
+   function moveButton() {
+     const cardRect = card.getBoundingClientRect();
+     const maxX = cardRect.width - noBtn.offsetWidth;
+     const maxY = cardRect.height - noBtn.offsetHeight;
+     const x = Math.random() * maxX;
+     const y = Math.random() * maxY;
+     noBtn.style.left = x + "px";
+     noBtn.style.top = y + "px";
+   }
    function yesClicked() {
      document.body.innerHTML = `
-<h1>YAY 💘</h1>
-<p>I knew it 😌</p>
-<p>Happy Valentine’s, my love ❤️</p>
+<h1 style="color:#ff4d6d;">YAYYY 💘</h1>
+<p style="font-size:24px;">I knew you'd choose correctly 😌</p>
      `;
    }
 </script>
