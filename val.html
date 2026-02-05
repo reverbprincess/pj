@@ -15,8 +15,8 @@
      text-align: center;
    }
    .card {
-     width: 500px;
-     height: 320px;
+     width: 75%;
+     height: auto;
      background: white;
      border-radius: 20px;
      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
@@ -24,10 +24,25 @@
      padding-top: 40px;
      overflow: hidden; /* keeps button inside */
    }
-   h1 {
+.valentine-container {
+ text-align: center;
+ padding: 20px;
+}
+.top-image {
+ width: 100%;
+ max-width: 150px;     /* controls size */
+ height: auto;         /* keeps proportions */
+ border-radius: 10px;
+ margin: 0 auto 5px;
+ display: block;
+ box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+h1 {
+ font-size: 38px;
      color: #ff4d6d;
      margin-bottom: 40px;
-   }
+}
+
    button {
   width: 120px;          /* FIXED WIDTH */
   height: 44px;          /* FIXED HEIGHT */
@@ -55,11 +70,24 @@
 </style>
 </head>
 <body>
+
+
 <div class="card" id="card">
+
+
+
+<div class="valentine-container">
+<img src="hehe1.jpg" alt="Us together" class="top-image">
 <h1>💖 Will you be my Valentine? 💖</h1>
+<div>
 <button id="yesBtn" onclick="yesClicked()">Can la 💕</button>
 <button id="noBtn">Cannot 🙃</button>
 </div>
+</div>
+
+<h5>The "Cannot" button is a little bit cheeky </h5>
+</div>
+
 <script>
    const noBtn = document.getElementById("noBtn");
    const card = document.getElementById("card");
@@ -84,8 +112,13 @@
    }
    function yesClicked() {
      document.body.innerHTML = `
+<div class="valentine-container">
 <h1 style="color:#ff4d6d;">YAYYY 💘</h1>
+
 <p style="font-size:24px;">I knew you'd choose correctly 😌</p>
+
+<img src="hehe2.jpg" alt="Us together" class="top-image">
+</div>
      `;
    }
 </script>
